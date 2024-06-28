@@ -1,35 +1,75 @@
-import express from "express";
-import recipeRouter from "./routes/recipes.js"; 
+import express, { Router } from "express";
+import mongoose, { mongo } from "mongoose";
+import recipeRouter from "./routes/recipes.js";
+
+// connect to database
+await mongoose.connect(process.env.MONGO_URL);
 
 //  create express app 
 const app = express();
 
 
-// Define routes
 
-app.get('/', (req, res) => {
-    res.json('Welcome home');
+// create middlewares
+app.use(express.json());
+app.use(recipeRouter)
+
+
+
+// Listen for incoming requests
+app.listen(3000, () => {
+    console.log('App is listening to port 3000')
 });
 
 
-app.post('/login', (req, res) => {
-    res.json('Login successful')
-});
 
 
-app.patch('/patch', (req, res) => {
-    res.json('Changes Successful')
-} );
 
 
-// use routes
-app.use(recipeRouter);
 
 
-// Listen for incoming requests 
-app.listen(3000, ()=> {
-    console.log ('App listening on port 3000');
-});
+// // create router
+// const recipeRouter = Router();
+
+// // Define routes
+// recipeRouter.get('/recipes', async (req, res) => {
+
+//     // Add all recipe from the database
+//     await RecipeModel1.create(req, res)
+// })
+
+
+// recipeRouter.post('/recipes', async (req, res) => {
+//     // Add recipe to the database
+//     const newRecipe = await RecipeModel.create(req.body) => {
+//         res.json('')
+//     }
+// })
+
+
+// app.get('/', (req, res) => {
+//     res.json('Welcome home');
+// });
+
+
+// app.post('/login', (req, res) => {
+//     res.json('Login successful')
+// });
+
+
+// app.patch('/patch', (req, res) => {
+//     res.json('Changes Successful')
+// });
+
+
+// // use routes
+// app.use(recipeRouter);
+
+
+// // Listen for incoming requests 
+// app.listen(3000, () => {
+//     console.log('App listening on port 3000');
+// });
 
 
 
