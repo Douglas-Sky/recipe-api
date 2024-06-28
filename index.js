@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import mongoose, { mongo } from "mongoose";
 import recipeRouter from "./routes/recipes.js";
+import categoryRouter from "./routes/category.js";
 
 // connect to database
 await mongoose.connect(process.env.MONGO_URL);
@@ -8,15 +9,18 @@ await mongoose.connect(process.env.MONGO_URL);
 //  create express app 
 const app = express();
 
-
-
 // create middlewares
 app.use(express.json());
 app.use(recipeRouter)
 
 
+// use routes
+app.use(recipeRouter);
+app.use(categoryRouter);
+
 
 // Listen for incoming requests
+const port = process.env.PORT || 3000;
 app.listen(3000, () => {
     console.log('App is listening to port 3000')
 });

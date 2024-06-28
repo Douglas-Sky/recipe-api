@@ -5,7 +5,7 @@ import { deleteRecipe, getRecipe, getRecipes, patchRecipe, postRecipe } from "..
 const recipeRouter = Router();
 
 
-// Define router
+// Define routes
 recipeRouter.get('/recipes', getRecipes);
 
 recipeRouter.post('/recipes', postRecipe);
