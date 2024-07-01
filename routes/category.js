@@ -11,7 +11,7 @@ categoryRouter.get('/categories',getCategories);
 
 categoryRouter.post('/categories', postCategory);
 
-
+categoryRouter.patch('/')
 
 // Export router 
 export default categoryRouter;

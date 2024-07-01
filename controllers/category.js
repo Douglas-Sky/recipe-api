@@ -7,14 +7,12 @@ export const getCategories = async (req, res, next) => {
         const allCategories = await categoryModel.find();
         
         // return response
-        res.status(200).json(allCategories)
+        res.status(200).json(allCategories);
 
     } catch (error) {
         next(error);
     }
 }
-
-
 
 export const postCategory = async (req, res, next) => { 
     try {
@@ -23,7 +21,6 @@ export const postCategory = async (req, res, next) => {
 
         // return response
         res.status(201).json(newCategory)
-        
     } catch (error) {
         next(error)
         
