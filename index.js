@@ -1,8 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import OasGenerator from "express-oas-generator";
+import session from "express-session";
 import recipeRouter from "./routes/recipes.js";
 import categoryRouter from "./routes/category.js";
+import userRouter from "./routes/user.js";
+
 
 // connect to database
 await mongoose.connect(process.env.MONGO_URL);
@@ -16,9 +19,16 @@ expressOasGenerator.handleResponses(app,  {
 
 // create middlewares
 app.use(express.json());
+app.use(session({
+    secret:process.env.SESSION_SECRET,
+    resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 
-// use routes
+// use routes,
+app.use(userRouter);
 app.use(recipeRouter);
 app.use(categoryRouter);
 expressOasGenerator.handleRequests();

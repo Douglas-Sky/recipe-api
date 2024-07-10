@@ -15,7 +15,8 @@
     "@reis/mongoose-to-json": "^3.0.0",
     "express": "^4.19.2",
     "express-oas-generator": "^1.0.46",
-    "mongoose": "^8.4.4",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.5.0",
     "normalize-mongoose": "^1.0.0"
   },
   "devDependencies": {
